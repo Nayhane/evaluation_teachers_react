@@ -26,7 +26,7 @@ class Batch extends PureComponent {
 
   componentWillMount() {
     const { batch, fetchOneBatch, subscribeToWebsocket } = this.props
-    const { batchId } = this.props.params
+    const { batchId } = this.props
 
     if (!batch) { fetchOneBatch(batchId) }
     subscribeToWebsocket()
@@ -47,7 +47,6 @@ class Batch extends PureComponent {
 
     const title = batch.students.map(s => (s.name || null))
       .filter(n => !!n)
-      .join(' vs ')
 
     return (
       <div className="Batch">
@@ -62,7 +61,7 @@ class Batch extends PureComponent {
 }
 
 const mapStateToProps = ({ batches }) => {
-  const batch = batches.filter((b) => (b._id === batchId))[0]
+  const batch = batches.filter((b) => (b._id === batch._Id))[0]
   return {
     batch
   }
