@@ -1,69 +1,44 @@
 import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { fetchOneBatch } from '../actions/batches/fetch'
-import { connect as subscribeToWebsocket } from '../actions/websocket'
 
 
-const studentShape = PropTypes.shape({
-  _id: PropTypes.string.isRequired,
-  photo: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired
-})
 
 class Batch extends PureComponent {
-  static propTypes = {
-    fetchOneBatch: PropTypes.func.isRequired,
-    subscribeToWebsocket: PropTypes.func.isRequired,
-    batch: PropTypes.shape({
-      _id: PropTypes.string.isRequired,
-      students: PropTypes.arrayOf(studentShape),
-      endAt: PropTypes.string.isRequired,
-      startAt: PropTypes.string.isRequired
-    })
+
+  constructor(){
+    super()
+
+    this.state = {
+      batch: undefined
+    }
   }
 
   componentWillMount() {
-    const { batch, fetchOneBatch, subscribeToWebsocket } = this.props
-    const { batchId } = this.props
-
-    if (!batch) { fetchOneBatch(batchId) }
-    subscribeToWebsocket()
+    const { batchId } = this.props.match.params
+    this.props.fetchOneBatch(batchId)
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { batch } = nextProps
-
-    // if (batch && !batch.students[0].name) {
-    //   this.props.fetchStudents(batch)
-    // }
+  componentWillReceiveProps(nextProps){
+    const { batches } = nextProps
+    this.setState({batch: batches[0]})
   }
 
   render() {
-    const { batch } = this.props
+    const { batches } = this.props
+    const { batch } = this.state
 
-    if (!batch) return null
-
-    const title = batch.students.map(s => (s.name || null))
-      .filter(n => !!n)
+    if (!batch) { return null }
 
     return (
       <div className="Batch">
         <h1>Batch!</h1>
-        <p>{title}</p>
+        <h1>{batches[0].batchNumber}</h1>
       </div>
     )
   }
 }
 
-const mapStateToProps = ({ batches }) => {
-  const batch = batches.filter((b) => (b._id === batch._Id))[0]
-  return {
-    batch
-  }
-}
+const mapStateToProps = ({ batches }) => ({ batches })
 
-export default connect(mapStateToProps, {
-  subscribeToWebsocket,
-  fetchOneBatch
-})(Batch)
+export default connect(mapStateToProps, {fetchOneBatch})(Batch)
