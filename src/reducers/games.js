@@ -1,11 +1,11 @@
-// src/reducers/games.js
-import { FETCHED_GAMES, FETCHED_ONE_GAME } from '../actions/games/fetch'
+// src/reducers/batches.js
+import { FETCHED_GAMES, FETCHED_ONE_GAME } from '../actions/batches/fetch'
 import {
   GAME_CREATED,
   GAME_UPDATED,
   GAME_REMOVED,
   GAME_PLAYERS_UPDATED,
-} from '../actions/games/subscribe'
+} from '../actions/batches/subscribe'
 
 export default (state = [], { type, payload } = {}) => {
   switch (type) {
@@ -13,39 +13,39 @@ export default (state = [], { type, payload } = {}) => {
       return [ ...payload ]
 
     case FETCHED_ONE_GAME :
-      const gameIds = state.map(g => g._id)
-      if (gameIds.indexOf(payload._id) < 0) {
+      const batchIds = state.map(g => g._id)
+      if (batchIds.indexOf(payload._id) < 0) {
         return [{ ...payload }].concat(state)
       }
-      return state.map((game) => {
-        if (game._id === payload._id) {
+      return state.map((batch) => {
+        if (batch._id === payload._id) {
           return { ...payload }
         }
-        return game
+        return batch
       })
 
     case GAME_CREATED :
-      const newGame = { ...payload }
-      return [newGame].concat(state)
+      const newBatch = { ...payload }
+      return [newBatch].concat(state)
 
     case GAME_UPDATED :
-      return state.map((game) => {
-        if (game._id === payload._id) {
+      return state.map((batch) => {
+        if (batch._id === payload._id) {
           return { ...payload }
         }
-        return game
+        return batch
       })
 
     case GAME_PLAYERS_UPDATED :
-      return state.map((game) => {
-        if (game._id === payload.game._id) {
-          return { ...payload.game, players: payload.players }
+      return state.map((batch) => {
+        if (batch._id === payload.batch._id) {
+          return { ...payload.batch, students: payload.students }
         }
-        return game
+        return batch
       })
 
     case GAME_REMOVED :
-        return state.filter((game) => (game._id !== payload._id))
+        return state.filter((batch) => (batch._id !== payload._id))
 
     default :
       return state
