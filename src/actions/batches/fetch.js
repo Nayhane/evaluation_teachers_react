@@ -1,4 +1,4 @@
-// src/actions/batches/fetch.js
+// src/actions/students/fetch.js
 
 import API from '../../api/client'
 import {
@@ -74,10 +74,10 @@ export const fetchOneBatch = (batchId) => {
         dispatch({ type: APP_DONE_LOADING })
         dispatch({ type: LOAD_SUCCESS })
 
-        // dispatch({
-        //   type: FETCHED_ONE_GAME,
-        //   payload: result.body
-        // })
+        dispatch({
+          type: FETCHED_ONE_BATCH,
+          payload: result.body
+        })
       })
       .catch((error) => {
         dispatch({ type: APP_DONE_LOADING })

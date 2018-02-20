@@ -1,13 +1,17 @@
 // src/containers/Lobby.js
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
-// import { push } from 'react-router-redux'
-import fetchBatches, { fetchStudents } from '../actions/batches/fetch'
+import fetchBatches from '../actions/batches/fetch'
+import fetchStudents from '../actions/students/fetch'
 import { connect as subscribeToWebsocket } from '../actions/websocket'
 import CreateBatchButton from '../components/batches/CreateBatchButton'
+import CreateStudentButton from '../components/students/CreateStudentButton'
 import Paper from 'material-ui/Paper'
 import Menu from 'material-ui/Menu'
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card'
+import FlatButton from 'material-ui/FlatButton'
 import MenuItem from 'material-ui/MenuItem'
+import StudentsList from '../components/students/StudentsList'
 
 
 import './Lobby.css'
@@ -15,34 +19,40 @@ import './Lobby.css'
 class Lobby extends PureComponent {
   componentWillMount() {
     this.props.fetchBatches()
+    this.props.fetchStudents()
     this.props.subscribeToWebsocket()
   }
 
-  renderBatch = (batch, index) => {
-    const title = batch.map(b => (b.number || null))
 
-    return (
-      <MenuItem
-        key={index}
-        onClick={this.findBy(batch._id)}
-        primaryText={title} />
+renderBatches = (batch, index) => {
+return (
+  <Card>
+    <CardHeader
+      title={`Batch ${batch.batchNumber}`}
+    />
+    <CardText>
+      {`${batch.students.length} Students`}
+    </CardText>
+    <CardActions>
+      <FlatButton label="Evalute" />
+    </CardActions>
+  </Card>
     )
   }
 
   render() {
     return (
       <div className="Lobby">
-        <CreateBatchButton />
-        <Paper className="paper">
-          <Menu>
-            {this.props.batches.map(this.renderBatch)}
-          </Menu>
-        </Paper>
+      <Paper className="paper">
+      <CreateStudentButton />
+      </Paper>
+      <br />
+            {this.props.batches.map(this.renderBatches)}
       </div>
     )
   }
 }
 
-const mapStateToProps = ({ batches, currentUser }) => ({ batches, currentUser })
+const mapStateToProps = ({ batches, students, currentUser }) => ({ batches, students, currentUser })
 
-export default connect(mapStateToProps, { fetchBatches, subscribeToWebsocket, fetchStudents })(Lobby)
+export default connect(mapStateToProps, { fetchBatches, fetchStudents, subscribeToWebsocket })(Lobby)
