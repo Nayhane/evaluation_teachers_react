@@ -1,19 +1,19 @@
 // src/reducers/batches.js
-import { FETCHED_GAMES, FETCHED_ONE_GAME } from '../actions/batches/fetch'
+import { FETCHED_BATCHES, FETCHED_ONE_BATCH } from '../actions/batches/fetch'
 import {
-  GAME_CREATED,
-  GAME_UPDATED,
-  GAME_REMOVED,
-  GAME_PLAYERS_UPDATED,
+  BATCH_CREATED,
+  BATCH_UPDATED,
+  BATCH_REMOVED,
+  BATCH_STUDENTS_UPDATED,
 } from '../actions/batches/subscribe'
 
 export default (state = [], { type, payload } = {}) => {
   switch (type) {
-    case FETCHED_GAMES :
+    case FETCHED_BATCHES :
       return [ ...payload ]
 
-    case FETCHED_ONE_GAME :
-      const batchIds = state.map(g => g._id)
+    case FETCHED_ONE_BATCH :
+      const batchIds = state.map(b => b._id)
       if (batchIds.indexOf(payload._id) < 0) {
         return [{ ...payload }].concat(state)
       }
@@ -24,11 +24,11 @@ export default (state = [], { type, payload } = {}) => {
         return batch
       })
 
-    case GAME_CREATED :
+    case BATCH_CREATED :
       const newBatch = { ...payload }
       return [newBatch].concat(state)
 
-    case GAME_UPDATED :
+    case BATCH_UPDATED :
       return state.map((batch) => {
         if (batch._id === payload._id) {
           return { ...payload }
@@ -36,7 +36,7 @@ export default (state = [], { type, payload } = {}) => {
         return batch
       })
 
-    case GAME_PLAYERS_UPDATED :
+    case BATCH_STUDENTS_UPDATED :
       return state.map((batch) => {
         if (batch._id === payload.batch._id) {
           return { ...payload.batch, students: payload.students }
@@ -44,7 +44,7 @@ export default (state = [], { type, payload } = {}) => {
         return batch
       })
 
-    case GAME_REMOVED :
+    case BATCH_REMOVED :
         return state.filter((batch) => (batch._id !== payload._id))
 
     default :
