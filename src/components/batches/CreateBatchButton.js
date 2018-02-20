@@ -3,7 +3,6 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import RaisedButton from 'material-ui/RaisedButton'
-// import StarIcon from 'material-ui/svg-icons/action/favorite'
 import createBatch from '../../actions/batches/create'
 
 class CreateBatchButton extends PureComponent {
