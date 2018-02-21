@@ -15,7 +15,7 @@ class StudentsList extends PureComponent{
 
   render(){
     const { name, photo } = this.props
-    
+    const student = this.props
     return(
       <div>
         <ul>student</ul>
