@@ -1,6 +1,6 @@
 // src/reducers/batches.js
 import { FETCHED_STUDENTS } from '../actions/students/fetch'
-import { STUDENT_CREATE } from '../actions/students/create'
+import { BATCH_STUDENTS_UPDATED } from '../actions/batches/subscribe'
 
 
 export default (state = [], { type, payload } = {}) => {
@@ -8,10 +8,10 @@ export default (state = [], { type, payload } = {}) => {
     case FETCHED_STUDENTS :
       return [ ...payload ]
 
-      case STUDENT_CREATED :
+      case BATCH_STUDENTS_UPDATED :
         const newStudent = { ...payload }
         return [newStudent].concat(state)
-      
+
     default :
       return state
 

@@ -4,13 +4,12 @@ import { connect } from 'react-redux'
 import fetchBatches from '../actions/batches/fetch'
 import fetchStudents from '../actions/students/fetch'
 import { connect as subscribeToWebsocket } from '../actions/websocket'
-import CreateBatchButton from '../components/batches/CreateBatchButton'
-import CreateStudentButton from '../components/students/CreateStudentButton'
 import Paper from 'material-ui/Paper'
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card'
 import FlatButton from 'material-ui/FlatButton'
 import MenuItem from 'material-ui/MenuItem'
 import StudentsList from '../components/students/StudentsList'
+import BatchEditor from '../components/batches/BatchEditor'
 import './Lobby.css'
 
 class Lobby extends PureComponent {
@@ -30,6 +29,7 @@ return (
       title={`Batch #${batch.batchNumber}`}
     />
     <CardText>
+
       {batch.startAt} - {batch.endAt}
       <br/>
       {`${batch.students.length} Students`}
@@ -45,47 +45,14 @@ return (
     return (
       <div className="Lobby">
       <Paper className="paper">
-      <CreateStudentButton />
       </Paper>
       <br />
         {this.props.batches.map(this.renderBatches)}
 
       <br /><br /><br />
       <div>
-      <h3> Create a new Batch </h3>
-      <input
-         type="number"
-         ref="batch"
-         className="batch"
-         placeholder="batch number"
-         // defaultValue=""
-         // onChange={this.props}
-         // onKeyDown={this.props}
-         />
-
-      <input
-       type="date"
-       ref="startAt"
-       className="startAt"
-       placeholder="start at"
-       // defaultValue=""
-       // onChange={this.props}
-       // onKeyDown={this.props}
-       />
-
-       <input
-        type="date"
-        ref="endAt"
-        className="endAt"
-        placeholder="ends at"
-        // defaultValue=""
-        // onChange={this.props}
-        // onKeyDown={this.props}
-        />
-
-       <div className="actions">
-         <button className="primary">Save</button>
-       </div>
+      <h3> Create a new Batch</h3>
+      <BatchEditor />
       </div>
       </div>
     )
