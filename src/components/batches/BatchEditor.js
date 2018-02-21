@@ -42,6 +42,7 @@ class BatchEditor extends PureComponent{
       startAt,
       endAt,
     } = this.state
+    this.props.createBatch({batchNumber, startAt, endAt})
   }
 
 

@@ -5,8 +5,6 @@ import { BATCH_STUDENTS_UPDATED } from '../actions/batches/subscribe'
 
 export default (state = [], { type, payload } = {}) => {
   switch (type) {
-    case FETCHED_STUDENTS :
-      return [ ...payload ]
 
       case BATCH_STUDENTS_UPDATED :
         const newStudent = { ...payload }

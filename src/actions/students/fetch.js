@@ -13,11 +13,11 @@ export const FETCHED_ONE_STUDENT = 'FETCHED_ONE_STUDENT'
 
 const api = new API()
 
-export default () => {
+export default (batchId) => {
   return (dispatch) => {
     dispatch({ type: APP_LOADING })
 
-    api.get('/students')
+    api.get(`batch/${batchId}/students`)
       .then((result) => {
         dispatch({ type: APP_DONE_LOADING })
         dispatch({ type: LOAD_SUCCESS })
