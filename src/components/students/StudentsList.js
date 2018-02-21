@@ -6,7 +6,7 @@ import fetchStudents from '../../actions/students/fetch'
 class StudentsList extends PureComponent{
  static propTypes = {
    students: PropTypes.arrayOf({
-     _id: PropTypes.string.isRequired,
+     _id: PropTypes.string,
      name: PropTypes.string.isRequired,
      photo: PropTypes.string.isRequired
    })
@@ -14,10 +14,12 @@ class StudentsList extends PureComponent{
 
 
   render(){
+    const { name, photo } = this.props
+    const student = this.props
     return(
       <div>
-      <ul>
-      </ul>
+        <ul>student</ul>
+        <li>{ student.name } - {student.photo}</li>
       </div>
     )
   }

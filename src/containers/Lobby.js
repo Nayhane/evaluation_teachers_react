@@ -42,7 +42,6 @@ return (
   }
 
   render() {
-
     return (
       <div className="Lobby">
       <Paper className="paper">
@@ -50,6 +49,44 @@ return (
       </Paper>
       <br />
         {this.props.batches.map(this.renderBatches)}
+
+      <br /><br /><br />
+      <div>
+      <h3> Create a new Batch </h3>
+      <input
+         type="number"
+         ref="batch"
+         className="batch"
+         placeholder="batch number"
+         // defaultValue=""
+         // onChange={this.props}
+         // onKeyDown={this.props}
+         />
+
+      <input
+       type="date"
+       ref="startAt"
+       className="startAt"
+       placeholder="start at"
+       // defaultValue=""
+       // onChange={this.props}
+       // onKeyDown={this.props}
+       />
+
+       <input
+        type="date"
+        ref="endAt"
+        className="endAt"
+        placeholder="ends at"
+        // defaultValue=""
+        // onChange={this.props}
+        // onKeyDown={this.props}
+        />
+
+       <div className="actions">
+         <button className="primary">Save</button>
+       </div>
+      </div>
       </div>
     )
   }
