@@ -1,14 +1,17 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { fetchOneBatch } from '../actions/batches/fetch'
+import fetchStudents  from '../actions/students/fetch'
 import StudentsList from '../components/students/StudentsList'
 import StudentEditor from '../components/students/StudentEditor'
+import Paper from 'material-ui/Paper'
+import './Batch.css'
 
 
 
 class Batch extends PureComponent {
 
-  constructor(props){
+  constructor(){
     super()
 
     this.state = {
@@ -19,12 +22,12 @@ class Batch extends PureComponent {
   componentWillMount() {
     const { batchId } = this.props.match.params
     this.props.fetchOneBatch(batchId)
+    this.props.fetchStudents(batchId)
 
   }
 
   componentWillReceiveProps(nextProps){
     const { batches } = nextProps
-
     this.setState({batch: batches[0]})
   }
 
@@ -44,8 +47,10 @@ class Batch extends PureComponent {
         <StudentsList />
         <br /><br /><br />
         <div>
+        <Paper className='Paper2' zDepth={2} rounded={false} >
         <h3> Add a new student</h3>
         <StudentEditor />
+        </Paper>
         </div>
       </div>
     )
@@ -54,4 +59,4 @@ class Batch extends PureComponent {
 
 const mapStateToProps = ({ batches }) => ({ batches })
 
-export default connect(mapStateToProps, {fetchOneBatch})(Batch)
+export default connect(mapStateToProps, {fetchOneBatch, fetchStudents })(Batch)
