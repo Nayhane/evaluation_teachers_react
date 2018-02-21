@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { fetchOneBatch } from '../actions/batches/fetch'
+import StudentsList from '../components/students/StudentsList'
 
 
 
@@ -30,10 +31,42 @@ class Batch extends PureComponent {
 
     if (!batch) { return null }
 
+
+
     return (
       <div className="Batch">
-        <h1>Batch!</h1>
-        <h1>{batches[0].batchNumber}</h1>
+        <h1>Batch # {batches[0].batchNumber}</h1>
+
+        <StudentsList />
+        <div>
+        <h3> Add new Student </h3>
+        <input
+           type="text"
+           ref="name"
+           className="name"
+           placeholder="Full name"
+           // defaultValue="Full name"
+           // onChange={this.props}
+           // onKeyDown={this.props}
+           />
+
+
+
+        <input
+         type="text"
+         ref="photo"
+         className="photo"
+         placeholder="Photo URL"
+         // defaultValue="Photo"
+         // onChange={this.props}
+         // onKeyDown={this.props}
+         />
+
+         <div className="actions">
+           <button className="primary">Save</button>
+         </div>
+
+        </div>
       </div>
     )
   }

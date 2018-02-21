@@ -9,7 +9,7 @@ import {
 // import { BATCH_STUDENTS_UPDATED } from './subscribe'
 
 export const FETCHED_STUDENTS = 'FETCHED_STUDENTS'
-export const FETCHED_ONE_BATCH = 'FETCHED_ONE_BATCH'
+export const FETCHED_ONE_STUDENT = 'FETCHED_ONE_STUDENT'
 
 const api = new API()
 
