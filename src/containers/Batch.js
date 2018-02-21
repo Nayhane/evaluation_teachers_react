@@ -2,12 +2,13 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { fetchOneBatch } from '../actions/batches/fetch'
 import StudentsList from '../components/students/StudentsList'
+import StudentEditor from '../components/students/StudentEditor'
 
 
 
 class Batch extends PureComponent {
 
-  constructor(){
+  constructor(props){
     super()
 
     this.state = {
@@ -18,16 +19,19 @@ class Batch extends PureComponent {
   componentWillMount() {
     const { batchId } = this.props.match.params
     this.props.fetchOneBatch(batchId)
+
   }
 
   componentWillReceiveProps(nextProps){
     const { batches } = nextProps
+
     this.setState({batch: batches[0]})
   }
 
   render() {
     const { batches } = this.props
     const { batch } = this.state
+
 
     if (!batch) { return null }
 
@@ -38,34 +42,10 @@ class Batch extends PureComponent {
         <h1>Batch # {batches[0].batchNumber}</h1>
 
         <StudentsList />
+        <br /><br /><br />
         <div>
-        <h3> Add new Student </h3>
-        <input
-           type="text"
-           ref="name"
-           className="name"
-           placeholder="Full name"
-           // defaultValue="Full name"
-           // onChange={this.props}
-           // onKeyDown={this.props}
-           />
-
-
-
-        <input
-         type="text"
-         ref="photo"
-         className="photo"
-         placeholder="Photo URL"
-         // defaultValue="Photo"
-         // onChange={this.props}
-         // onKeyDown={this.props}
-         />
-
-         <div className="actions">
-           <button className="primary">Save</button>
-         </div>
-
+        <h3> Add a new student</h3>
+        <StudentEditor />
         </div>
       </div>
     )
