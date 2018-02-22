@@ -28,6 +28,7 @@ class Batch extends PureComponent {
   componentWillReceiveProps(nextProps){
     const { batches } = nextProps
 
+
     this.setState({
       batch: batches[0],
       students: batches[0].students

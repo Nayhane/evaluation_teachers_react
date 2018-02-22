@@ -42,11 +42,12 @@ class Student extends PureComponent {
       <div>
       <Paper className='Student_page' zDepth={2} rounded={false}>
         <h3>Student: {student.name}</h3>
+        <h5>Last Evaluation: {student.current_color}</h5>
          <img className="Page_photo" alt="" src={ student.photo }/>
          <br />
          <EvaluationList evaluations={student.evaluations}/>
          <br />
-         <EvaluationEditor studentId={student._id} />
+         <EvaluationEditor student={student} />
 
       </Paper>
       </div>

@@ -28,16 +28,18 @@ export default (state = [], { type, payload } = {}) => {
         const createStudent = { ...payload }
         return [createStudent].concat(state)
 
-        case EVALUATION_CREATED :
-          const createEvaluation = { ...payload }
+      case EVALUATION_CREATED :
+        const createEvaluation = { ...payload }
+        console.log(payload)
 
-          return state.map((student) => {
-              if (student._id === createEvaluation.student_id) {
-                student.evaluations = [createEvaluation].concat(student.evaluations)
-                return { ...student }
-              }
-            return student
-          })
+        return state.map((student) => {
+            if (student._id === createEvaluation.student_id) {
+              student.evaluations = student.evaluations.concat([createEvaluation])
+              student.current_color = createEvaluation.color
+              return { ...student }
+            }
+          return student
+        })
 
 
       case FETCHED_EVALUATIONS :

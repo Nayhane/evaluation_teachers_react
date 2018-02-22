@@ -4,7 +4,6 @@ import './StudentsList.css'
 
 class StudentsList extends PureComponent{
 
-
   renderStudents(student, index){
     return(
       <div key={index} className="col-md-4">
@@ -14,7 +13,9 @@ class StudentsList extends PureComponent{
         <a href={`/student/${student.batch_id}/${student._id}`}>
         {student.name}</a>
         </div>
-         <img className="S_photo" alt="" src={ student.photo }/>
+        <a href={`/student/${student.batch_id}/${student._id}`}>
+        <img className="S_photo" alt="" src={ student.photo }/>
+        </a>
          <p> Last evaluation:  </p>
         </Paper>
       </div>
@@ -35,6 +36,5 @@ class StudentsList extends PureComponent{
     )
   }
 }
-
 
 export default StudentsList

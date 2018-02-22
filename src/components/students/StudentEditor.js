@@ -31,11 +31,10 @@ class StudentEditor extends PureComponent{
 
  saveStudent() {
   const { batchId } = this.props
-  
+
 
   const { name, photo } = this.state
   this.props.createStudent({name, photo}, batchId)
-    // console.log(batchId)
 
   }
 

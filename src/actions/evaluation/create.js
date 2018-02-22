@@ -11,28 +11,38 @@ import {
 const api = new API()
 
 
-export default (newEvaluation, studentId) => {
+export default (newEvaluation, student) => {
+
   return (dispatch) => {
     dispatch({ type: APP_LOADING })
 
+  api.post(`/students/${student._id}/evaluations`, newEvaluation )
+    .then((result_evaluation) => {
+        student.current_color = newEvaluation.color
 
-  api.post(`/students/${studentId}/evaluations`, newEvaluation )
-
-      .then((result) => {
-        dispatch({ type: APP_DONE_LOADING })
-        dispatch({ type: LOAD_SUCCESS })
-
-        dispatch({
-          type: EVALUATION_CREATED,
-          payload: result.body
+        api.put(`/students/${student._id}`, student._id, student)
+        .then((result) => {
+          dispatch({ type: APP_DONE_LOADING })
+          dispatch({ type: LOAD_SUCCESS })
+          dispatch({
+            type: EVALUATION_CREATED,
+            payload: result_evaluation.body
+          })
         })
-      })
-      .catch((error) => {
-        dispatch({ type: APP_DONE_LOADING })
-        dispatch({
-          type: LOAD_ERROR,
-          payload: error.message
+        .catch((error) => {
+          dispatch({ type: APP_DONE_LOADING })
+          dispatch({
+            type: LOAD_ERROR,
+            payload: error.message
+          })
         })
+    })
+    .catch((error) => {
+      dispatch({ type: APP_DONE_LOADING })
+      dispatch({
+        type: LOAD_ERROR,
+        payload: error.message
       })
+    })
   }
 }

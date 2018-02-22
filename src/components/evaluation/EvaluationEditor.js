@@ -36,9 +36,9 @@ class EvaluationEditor extends PureComponent{
  }
 
  saveEvaluation() {
-  const { studentId } = this.props
+  const { student } = this.props
   const { color, remark, date } = this.state
-  this.props.createEvaluation({color, remark, date}, studentId)
+  this.props.createEvaluation({color, remark, date}, student)
 
   }
 
