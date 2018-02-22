@@ -18,11 +18,9 @@ export default (newEvaluation, student) => {
 
   api.post(`/students/${student._id}/evaluations`, newEvaluation )
     .then((result_evaluation) => {
-        student.current_color = result_evaluation.body.color
-
-        api.put(`/students/${student._id}`, student._id, student)
+        api.put(`/students/${student._id}`, { current_color: result_evaluation.body.color})
         .then((result) => {
-          console.log(result)
+          console.log('result', result)
           dispatch({ type: APP_DONE_LOADING })
           dispatch({ type: LOAD_SUCCESS })
           dispatch({

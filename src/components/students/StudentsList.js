@@ -16,7 +16,7 @@ class StudentsList extends PureComponent{
         <a href={`/student/${student.batch_id}/${student._id}`}>
         <img className="S_photo" alt="" src={ student.photo }/>
         </a>
-         <p> Last evaluation:  </p>
+         <p> Last evaluation: { student.current_color } </p>
         </Paper>
       </div>
     )

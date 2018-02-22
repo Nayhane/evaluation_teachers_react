@@ -7,7 +7,7 @@ import {
   BATCH_STUDENTS_UPDATED,
   STUDENT_CREATED
 } from '../actions/batches/subscribe'
-import { FETCHED_STUDENTS } from '../actions/students/fetch'
+import { FETCHED_STUDENTS, FETCHED_ASK_QUESTION } from '../actions/students/fetch'
 
 export default (state = [], { type, payload } = {}) => {
   switch (type) {
@@ -65,6 +65,17 @@ export default (state = [], { type, payload } = {}) => {
           }
         return batch
       })
+
+
+      case FETCHED_ASK_QUESTION :
+      return state.map((batch) => {
+          if (batch._id === payload[0].batch_id) {
+            batch.askQuestion = payload[0]
+            return { ...batch }
+          }
+        return batch
+      })
+
 
     case BATCH_REMOVED :
         return state.filter((batch) => (batch._id !== payload._id))
