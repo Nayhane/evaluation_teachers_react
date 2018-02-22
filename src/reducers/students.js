@@ -1,6 +1,8 @@
 // src/reducers/batches.js
 import { FETCHED_STUDENTS, FETCHED_ONE_STUDENT} from '../actions/students/fetch'
 import { STUDENT_CREATED } from '../actions/batches/subscribe'
+import { EVALUATION_CREATED } from '../actions/batches/subscribe'
+import { FETCHED_EVALUATIONS } from '../actions/evaluation/fetch'
 import { BATCH_STUDENTS_UPDATED } from '../actions/batches/subscribe'
 
 
@@ -22,9 +24,32 @@ export default (state = [], { type, payload } = {}) => {
         return payload
       })
 
-        case STUDENT_CREATED :
-          const createStudent = { ...payload }
-          return [createStudent].concat(state)
+      case STUDENT_CREATED :
+        const createStudent = { ...payload }
+        return [createStudent].concat(state)
+
+        case EVALUATION_CREATED :
+          const createEvaluation = { ...payload }
+
+          return state.map((student) => {
+              if (student._id === createEvaluation.student_id) {
+                student.evaluations = [createEvaluation].concat(student.evaluations)
+                return { ...student }
+              }
+            return student
+          })
+
+
+      case FETCHED_EVALUATIONS :
+      return state.map((student) => {
+        payload.map((evaluation) => {
+          if (student._id === evaluation.student_id) {
+            student.evaluations = payload
+            return { ...student }
+          }
+        })
+        return student
+      })
 
 
     default :
