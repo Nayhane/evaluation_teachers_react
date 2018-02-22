@@ -2,9 +2,11 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { fetchOneBatch } from '../actions/batches/fetch'
 import fetchStudents  from '../actions/students/fetch'
+import { askQuestion }  from '../actions/students/fetch'
 import StudentsList from '../components/students/StudentsList'
 import StudentEditor from '../components/students/StudentEditor'
 import Paper from 'material-ui/Paper'
+import FlatButton from 'material-ui/FlatButton'
 import './Batch.css'
 
 
@@ -35,6 +37,10 @@ class Batch extends PureComponent {
     })
   }
 
+doAskQuestion(){
+  this.props.askQuestion(this.state.batch._id)
+}
+
 
   render() {
     const { batch, students } = this.state
@@ -46,6 +52,11 @@ class Batch extends PureComponent {
     return (
       <div className="Batch">
         <h1>Batch # {batches[0].batchNumber}</h1>
+        <FlatButton onClick={this.doAskQuestion.bind(this)}  label="Ask a question" />
+        {batch.askQuestion?
+        <h1>Ask: {batch.askQuestion.name}</h1>
+        : null
+        }
         <StudentsList students={students}  />
         <br /><br /><br />
         <div>
@@ -61,4 +72,4 @@ class Batch extends PureComponent {
 
 const mapStateToProps = ({ batches }) => ({ batches })
 
-export default connect(mapStateToProps, {fetchOneBatch, fetchStudents })(Batch)
+export default connect(mapStateToProps, {fetchOneBatch, fetchStudents, askQuestion })(Batch)
