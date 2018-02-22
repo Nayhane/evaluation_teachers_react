@@ -22,14 +22,12 @@ class Batch extends PureComponent {
 
   componentWillMount() {
     const { batchId } = this.props.match.params
-    this.props.fetchOneBatch(batchId)
-    this.props.fetchStudents(batchId)
-
+      this.props.fetchOneBatch(batchId)
+      this.props.fetchStudents(batchId)
   }
 
   componentWillReceiveProps(nextProps){
     const { batches } = nextProps
-
 
     this.setState({
       batch: batches[0],
@@ -37,9 +35,9 @@ class Batch extends PureComponent {
     })
   }
 
-doAskQuestion(){
-  this.props.askQuestion(this.state.batch._id)
-}
+  doAskQuestion(){
+    this.props.askQuestion(this.state.batch._id)
+  }
 
 
   render() {

@@ -24,7 +24,7 @@ class StudentsList extends PureComponent{
 
 
   render(){
-    const { students } = this.props
+    // const { students } = this.props
 
     return(
     <div>

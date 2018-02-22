@@ -4,7 +4,6 @@ import {
   BATCH_CREATED,
   BATCH_UPDATED,
   BATCH_REMOVED,
-  BATCH_STUDENTS_UPDATED,
   STUDENT_CREATED
 } from '../actions/batches/subscribe'
 import { FETCHED_STUDENTS, FETCHED_ASK_QUESTION } from '../actions/students/fetch'
@@ -30,7 +29,8 @@ export default (state = [], { type, payload } = {}) => {
 
     case BATCH_CREATED :
       const newBatch = { ...payload }
-      return [newBatch].concat(state)
+        return [newBatch].concat(state)
+
 
     case BATCH_UPDATED :
       return state.map((batch) => {
@@ -42,9 +42,7 @@ export default (state = [], { type, payload } = {}) => {
 
 
     case FETCHED_STUDENTS :
-     // const students = payload
-
-    return state.map((batch) => {
+     return state.map((batch) => {
       payload.map((student) => {
         if (batch._id === student.batch_id) {
           batch.students = payload
@@ -67,14 +65,14 @@ export default (state = [], { type, payload } = {}) => {
       })
 
 
-      case FETCHED_ASK_QUESTION :
+    case FETCHED_ASK_QUESTION :
       return state.map((batch) => {
           if (batch._id === payload[0].batch_id) {
             batch.askQuestion = payload[0]
             return { ...batch }
           }
         return batch
-      })
+    })
 
 
     case BATCH_REMOVED :

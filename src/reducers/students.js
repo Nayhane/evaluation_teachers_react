@@ -3,7 +3,6 @@ import { FETCHED_STUDENTS, FETCHED_ONE_STUDENT} from '../actions/students/fetch'
 import { STUDENT_CREATED } from '../actions/batches/subscribe'
 import { EVALUATION_CREATED } from '../actions/batches/subscribe'
 import { FETCHED_EVALUATIONS } from '../actions/evaluation/fetch'
-import { BATCH_STUDENTS_UPDATED } from '../actions/batches/subscribe'
 
 
 export default (state = [], { type, payload } = {}) => {
@@ -30,8 +29,7 @@ export default (state = [], { type, payload } = {}) => {
 
       case EVALUATION_CREATED :
         const createEvaluation = { ...payload }
-        console.log(payload)
-
+    
         return state.map((student) => {
             if (student._id === createEvaluation.student_id) {
               student.evaluations = student.evaluations.concat([createEvaluation])
