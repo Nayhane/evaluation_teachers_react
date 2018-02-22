@@ -15,7 +15,7 @@ export const FETCHED_ONE_STUDENT = 'FETCHED_ONE_STUDENT'
 const api = new API()
 
 export default (batchId) => {
-  return (dispatch) => { 
+  return (dispatch) => {
 
     dispatch({ type: APP_LOADING })
 

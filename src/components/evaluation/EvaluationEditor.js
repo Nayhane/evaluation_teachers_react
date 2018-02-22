@@ -1,21 +1,27 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
-import createStudent from '../../actions/students/create'
+import createEvaluation from '../../actions/evaluation/create'
 import RaisedButton from 'material-ui/RaisedButton'
 
 
-class Evaluation extends PureComponent{
+class EvaluationEditor extends PureComponent{
   constructor(props){
     super()
 
-   const { color, remark } = props
+   const { color, remark, date } = props
 
    this.state = {
     color,
     remark,
+    date
     }
   }
 
+  componentWillMount() {
+  this.setState({
+    date: new Date()
+   })
+  }
 
  updateColor(event){
    this.setState({
@@ -31,18 +37,24 @@ class Evaluation extends PureComponent{
 
  saveEvaluation() {
   const { studentId } = this.props
-
-
-  const { color, remark } = this.state
-  this.props.createEvaluation({color, remark}, studentId)
+  const { color, remark, date } = this.state
+  this.props.createEvaluation({color, remark, date}, studentId)
 
   }
 
-
     render() {
+
         return (
           <div className="box">
           <div className="editor">
+          <input
+            type="text"
+            ref="date"
+            className="date"
+            placeholder="date"
+            defaultValue={this.state.date}
+            readOnly='readOnly' />
+
             <input
               type="text"
               ref="color"
@@ -76,4 +88,4 @@ class Evaluation extends PureComponent{
       }
     }
 
-    export default connect(null, { createEvaluation })(Evaluation)
+    export default connect(null, { createEvaluation })(EvaluationEditor)
