@@ -10,12 +10,12 @@ import './Batch.css'
 
 
 class Batch extends PureComponent {
-
   constructor(){
     super()
 
     this.state = {
-      batch: undefined
+      batch: undefined,
+      students: null
     }
   }
 
@@ -28,23 +28,24 @@ class Batch extends PureComponent {
 
   componentWillReceiveProps(nextProps){
     const { batches } = nextProps
-    this.setState({batch: batches[0]})
+
+    this.setState({
+      batch: batches[0],
+      students: batches[0].students
+    })
   }
 
   render() {
+    const { batch, students } = this.state
     const { batches } = this.props
-    const { batch } = this.state
-
 
     if (!batch) { return null }
-
 
 
     return (
       <div className="Batch">
         <h1>Batch # {batches[0].batchNumber}</h1>
-
-        <StudentsList />
+        <StudentsList students={students} />
         <br /><br /><br />
         <div>
         <Paper className='Paper2' zDepth={2} rounded={false} >

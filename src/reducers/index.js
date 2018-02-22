@@ -3,6 +3,7 @@ import loading from './loading'
 import loadError from './loadError'
 import currentUser from './currentUser'
 import batches from './batches'
+import students from './students'
 
 
 export default {
@@ -10,5 +11,6 @@ export default {
   loadError,
   currentUser,
   batches,
+  students,
 
 }

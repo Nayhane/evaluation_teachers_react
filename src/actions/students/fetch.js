@@ -11,16 +11,19 @@ import {
 export const FETCHED_STUDENTS = 'FETCHED_STUDENTS'
 export const FETCHED_ONE_STUDENT = 'FETCHED_ONE_STUDENT'
 
+
 const api = new API()
 
 export default (batchId) => {
   return (dispatch) => {
+
     dispatch({ type: APP_LOADING })
 
-    api.get(`batch/${batchId}/students`)
+    api.get(`/batch/${batchId}/students`)
       .then((result) => {
         dispatch({ type: APP_DONE_LOADING })
         dispatch({ type: LOAD_SUCCESS })
+
 
         dispatch({
           type: FETCHED_STUDENTS,
