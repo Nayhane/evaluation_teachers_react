@@ -1,7 +1,10 @@
-.Lobby {
-  padding: 20px;
-  margin: 20px auto;
-  width: 80%;
+.Lobby_card {
+  margin-left: 20px;
+  margin-top: 20px;
+  height: 250px;
+  width: 300px;
+  display: block! important;
+  float: left! important;
 }
 
 .Lobby .paper {
@@ -13,9 +16,11 @@
 .Paper{
   height: 200px;
   width: 500px;
-  margin-top:  20px;
+  margin-bottom:  20px;
+  margin-left: 20px;
   padding-top: 20px;
   padding-left: 20px;
   text-align: 'center';
-  display: 'inline-block';
+  display: block! important;
+  float: left! important;
 }

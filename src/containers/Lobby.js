@@ -7,7 +7,7 @@ import { connect as subscribeToWebsocket } from '../actions/websocket'
 import Paper from 'material-ui/Paper'
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card'
 import { push } from 'react-router-redux'
-import FlatButton from 'material-ui/FlatButton'
+import RaisedButton from 'material-ui/RaisedButton'
 import BatchEditor from '../components/batches/BatchEditor'
 import './Lobby.css'
 
@@ -25,7 +25,8 @@ class Lobby extends PureComponent {
 
   renderBatches = (batch, index) => {
     return (
-      <Card key={index}>
+      <div className="Lobby_card" key={index}>
+      <Card >
         <CardHeader
           title={`Batch #${batch.batchNumber}`}
         />
@@ -35,9 +36,10 @@ class Lobby extends PureComponent {
           {`${batch.students.length} Students`}
         </CardText>
         <CardActions>
-          <FlatButton onClick={this.showBatch(batch._id)}  label="Evalute" />
+          <RaisedButton onClick={this.showBatch(batch._id)}  label="Evalute" primary={true} />
         </CardActions>
       </Card>
+      </div>
     )
   }
 

@@ -6,7 +6,7 @@ import { askQuestion }  from '../actions/students/fetch'
 import StudentsList from '../components/students/StudentsList'
 import StudentEditor from '../components/students/StudentEditor'
 import Paper from 'material-ui/Paper'
-import FlatButton from 'material-ui/FlatButton'
+import RaisedButton from 'material-ui/RaisedButton'
 import './Batch.css'
 
 
@@ -49,15 +49,15 @@ class Batch extends PureComponent {
 
     return (
       <div className="Batch">
-        <h1>Batch # {batches[0].batchNumber}</h1>
-        <FlatButton onClick={this.doAskQuestion.bind(this)}  label="Ask a question" />
-        {batch.askQuestion?
-        <h1>Ask: {batch.askQuestion.name}</h1>
+        <div className ='b_title'>Batch # {batches[0].batchNumber}</div>
+        <RaisedButton className='btn_ask' onClick={this.doAskQuestion.bind(this)}  label="Ask a question" primary={true} />
+        {batch.askQuestion ?
+        <p className='ask'>Ask to: {batch.askQuestion.name}</p>
         : null
         }
         <StudentsList students={students}  />
         <br /><br /><br />
-        <div>
+        <div className='create_card'>
         <Paper className='Paper2' zDepth={2} rounded={false} >
         <h3> Add a new student</h3>
         <StudentEditor batchId={batches[0]._id} />

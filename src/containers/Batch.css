@@ -6,5 +6,29 @@
   padding-top: 5px;
   padding-left: 20px;
   text-align: 'center';
-  display: 'inline-block';
+  display: block! important;
+  float: left! important;
+}
+
+.create_card{
+  display: block! important;
+  float: left! important;
+}
+
+.btn_ask{
+  margin-left:  20px;
+}
+
+.b_title{
+  font-family: serif;
+  font-size: 30px;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.ask{
+  font-family: serif;
+  font-size: 30px;
+  margin-left: 20px;
+  margin-top: 10px;
 }
