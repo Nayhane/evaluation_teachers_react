@@ -1,4 +1,5 @@
 import API from '../../api/client'
+import { STUDENT_CREATED } from '../batches/subscribe'
 import {
   APP_LOADING,
   APP_DONE_LOADING,
@@ -10,17 +11,20 @@ import {
 const api = new API()
 
 
-export default (student, batchId) => {
+export default (newStudent, batchId) => {
   return (dispatch) => {
     dispatch({ type: APP_LOADING })
 
 
-
-  api.post(`/batches/${batchId}/students`, student )
-      .then(() => {
+  api.post(`/batches/${batchId}/students`, newStudent )
+      .then((result) => {
         dispatch({ type: APP_DONE_LOADING })
         dispatch({ type: LOAD_SUCCESS })
 
+        dispatch({
+          type: STUDENT_CREATED,
+          payload: result.body
+        })
       })
       .catch((error) => {
         dispatch({ type: APP_DONE_LOADING })

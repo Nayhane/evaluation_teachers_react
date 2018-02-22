@@ -8,13 +8,14 @@ class StudentEditor extends PureComponent{
   constructor(props){
     super()
 
-   const {name, photo} = props
+   const { name, photo } = props
 
    this.state = {
     name,
     photo,
     }
   }
+
 
  updateName(event){
    this.setState({
@@ -29,11 +30,12 @@ class StudentEditor extends PureComponent{
  }
 
  saveStudent() {
-    const {
-      name,
-      photo,
-    } = this.state
-    this.props.createStudent({name, photo})
+  const { batchId } = this.props
+  
+
+  const { name, photo } = this.state
+  this.props.createStudent({name, photo}, batchId)
+    // console.log(batchId)
 
   }
 

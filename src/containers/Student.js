@@ -2,30 +2,44 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { fetchOneStudent } from '../actions/students/fetch'
+import Paper from 'material-ui/Paper'
+import './Student.css'
 
 
 class Student extends PureComponent {
-  static propTypes = {
-    name: PropTypes.string.isRequired,
-    photo: PropTypes.string.isRequired,
-    evaluation: PropTypes.string.isRequired,
+  constructor(props){
+    super()
+
+    this.state = {
+      student: null
+    }
   }
 
   componentWillMount() {
-    this.props.fetchOneStudent()
-
+    const { batchId, studentId } = this.props.match.params
+    this.props.fetchOneStudent(batchId, studentId)
   }
 
+  componentWillReceiveProps(nextProps){
+    const { students } = nextProps
+
+    this.setState({
+      student: students[0],
+    })
+  }
+
+
   render() {
-    const { name, photo, evaluation } = this.props
-    const { student } = this.props
+    const { student } = this.state
 
-
-    if (!student) return null
+  if (!student) { return null }
 
     return(
-      <div className="student page">
+      <div>
+      <Paper className='Student_page' zDepth={2} rounded={false}>
         <h3>Student: {student.name}</h3>
+         <img className="Page_photo" alt="" src={ student.photo }/>
+      </Paper>
       </div>
     )
   }

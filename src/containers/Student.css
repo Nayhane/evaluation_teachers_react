@@ -1,0 +1,15 @@
+.Student_page{
+  height: 500px;
+  width: 500px;
+  margin-top:  40px;
+  margin-left:  40px;
+  padding-top: 20px;
+  padding-left: 40px;
+  text-align: 'center';
+  display: 'inline-block';
+}
+
+.Page_photo{
+  height: 200px;
+  width: 200px;
+}
