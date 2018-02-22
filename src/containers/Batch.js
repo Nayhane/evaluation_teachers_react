@@ -8,9 +8,8 @@ import Paper from 'material-ui/Paper'
 import './Batch.css'
 
 
-
 class Batch extends PureComponent {
-  constructor(){
+  constructor(props){
     super()
 
     this.state = {
@@ -35,6 +34,7 @@ class Batch extends PureComponent {
     })
   }
 
+
   render() {
     const { batch, students } = this.state
     const { batches } = this.props
@@ -45,7 +45,7 @@ class Batch extends PureComponent {
     return (
       <div className="Batch">
         <h1>Batch # {batches[0].batchNumber}</h1>
-        <StudentsList students={students} />
+        <StudentsList students={students}  />
         <br /><br /><br />
         <div>
         <Paper className='Paper2' zDepth={2} rounded={false} >

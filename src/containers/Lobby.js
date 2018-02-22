@@ -34,7 +34,6 @@ return (
       title={`Batch #${batch.batchNumber}`}
     />
     <CardText>
-
       {batch.startAt} - {batch.endAt}
       <br/>
       {`${batch.students.length} Students`}

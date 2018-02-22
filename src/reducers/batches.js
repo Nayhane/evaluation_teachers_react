@@ -4,6 +4,7 @@ import {
   BATCH_CREATED,
   BATCH_UPDATED,
   BATCH_REMOVED,
+  BATCH_STUDENTS_UPDATED,
 } from '../actions/batches/subscribe'
 import { FETCHED_STUDENTS } from '../actions/students/fetch'
 
@@ -26,7 +27,7 @@ export default (state = [], { type, payload } = {}) => {
         return payload
       })
 
-    case BATCH_CREATED :
+    case BATCH_STUDENTS_UPDATED :
       const newBatch = { ...payload }
       return [newBatch].concat(state)
 

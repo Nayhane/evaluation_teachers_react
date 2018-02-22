@@ -10,7 +10,6 @@ class StudentEditor extends PureComponent{
 
    const {name, photo} = props
 
-
    this.state = {
     name,
     photo,
