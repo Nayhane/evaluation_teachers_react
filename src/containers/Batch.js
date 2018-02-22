@@ -50,7 +50,7 @@ class Batch extends PureComponent {
         <div>
         <Paper className='Paper2' zDepth={2} rounded={false} >
         <h3> Add a new student</h3>
-        <StudentEditor />
+        <StudentEditor batchId={batches[0]._id} />
         </Paper>
         </div>
       </div>

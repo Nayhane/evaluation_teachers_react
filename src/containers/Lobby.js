@@ -17,7 +17,6 @@ class Lobby extends PureComponent {
 
   componentWillMount() {
     this.props.fetchBatches()
-    this.props.fetchStudents()
     this.props.subscribeToWebsocket()
   }
 

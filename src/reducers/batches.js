@@ -5,6 +5,7 @@ import {
   BATCH_UPDATED,
   BATCH_REMOVED,
   BATCH_STUDENTS_UPDATED,
+  STUDENT_CREATED
 } from '../actions/batches/subscribe'
 import { FETCHED_STUDENTS } from '../actions/students/fetch'
 
@@ -54,6 +55,16 @@ export default (state = [], { type, payload } = {}) => {
     })
 
 
+    case STUDENT_CREATED :
+      const createStudent = { ...payload }
+
+      return state.map((batch) => {
+          if (batch._id === createStudent.batch_id) {
+            batch.students = [createStudent].concat(batch.students)
+            return { ...batch }
+          }
+        return batch
+      })
 
     case BATCH_REMOVED :
         return state.filter((batch) => (batch._id !== payload._id))

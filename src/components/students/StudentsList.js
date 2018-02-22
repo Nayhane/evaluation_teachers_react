@@ -7,17 +7,16 @@ class StudentsList extends PureComponent{
 
   renderStudents(student, index){
     return(
-      <div className="col-md-4">
-      <div key={index}>
+      <div key={index} className="col-md-4">
         <Paper className='Student_paper' zDepth={2} rounded={false}>
         <div>
         <br />
-        <a href={`/students/${student._id}`} >{student.name}</a>
+        <a href={`/student/${student.batch_id}/${student._id}`}>
+        {student.name}</a>
         </div>
          <img className="S_photo" alt="" src={ student.photo }/>
          <p> Last evaluation:  </p>
         </Paper>
-      </div>
       </div>
     )
   }
