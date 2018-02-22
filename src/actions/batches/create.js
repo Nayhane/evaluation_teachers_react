@@ -1,6 +1,7 @@
 // src/actions/batches/create.js
 
 import API from '../../api/client'
+import {BATCH_CREATED} from './subscribe'
 import {
   APP_LOADING,
   APP_DONE_LOADING,
@@ -10,15 +11,21 @@ import {
 
 const api = new API()
 
-export default (batch) => {
+export default (createBatch) => {
   return (dispatch) => {
     dispatch({ type: APP_LOADING })
 
-    api.post('/batches', batch)
+    api.post('/batches', createBatch)
       .then((result) => {
         dispatch({ type: APP_DONE_LOADING })
         dispatch({ type: LOAD_SUCCESS })
+
+        dispatch({
+            type: BATCH_CREATED,
+            payload: result.body
+          })
       })
+
       .catch((error) => {
         dispatch({ type: APP_DONE_LOADING })
         dispatch({

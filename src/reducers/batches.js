@@ -27,7 +27,7 @@ export default (state = [], { type, payload } = {}) => {
         return payload
       })
 
-    case BATCH_STUDENTS_UPDATED :
+    case BATCH_CREATED :
       const newBatch = { ...payload }
       return [newBatch].concat(state)
 

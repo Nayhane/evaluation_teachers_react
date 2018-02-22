@@ -15,7 +15,6 @@ export default (student, batchId) => {
     dispatch({ type: APP_LOADING })
 
 
-
   api.post(`/batches/${batchId}/students`, student )
       .then(() => {
         dispatch({ type: APP_DONE_LOADING })

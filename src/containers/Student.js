@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { fetchOneStudent } from '../actions/students/fetch'
+import Paper from 'material-ui/Paper'
+import './Student.css'
 
 
 class Student extends PureComponent {
@@ -24,8 +26,11 @@ class Student extends PureComponent {
     if (!student) return null
 
     return(
-      <div className="student page">
+      <div>
+      <Paper className='Student_page' zDepth={2} rounded={false}>
         <h3>Student: {student.name}</h3>
+         <img className="Page_photo" alt="" src={ student.photo }/>
+      </Paper>
       </div>
     )
   }
