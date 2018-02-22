@@ -27,7 +27,7 @@ export default (state = [], { type, payload } = {}) => {
         return payload
       })
 
-    case BATCH_CREATED :
+    case BATCH_STUDENTS_UPDATED :
       const newBatch = { ...payload }
       return [newBatch].concat(state)
 
@@ -41,16 +41,19 @@ export default (state = [], { type, payload } = {}) => {
 
 
     case FETCHED_STUDENTS :
-     const students = payload
-      return state
+     // const students = payload
 
-    case BATCH_STUDENTS_UPDATED :
-      return state.map((batch) => {
-        if (batch._id === payload.batch._id) {
-          return { ...payload.batch, students: payload.students }
+    return state.map((batch) => {
+      payload.map((student) => {
+        if (batch._id === student.batch_id) {
+          batch.students = payload
+          return { ...batch }
         }
-        return batch
       })
+      return batch
+    })
+
+
 
     case BATCH_REMOVED :
         return state.filter((batch) => (batch._id !== payload._id))

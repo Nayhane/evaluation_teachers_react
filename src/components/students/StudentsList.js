@@ -1,32 +1,36 @@
 import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import fetchStudents from '../../actions/students/fetch'
+import Paper from 'material-ui/Paper'
+import './StudentsList.css'
 
 class StudentsList extends PureComponent{
- static propTypes = {
-   students: PropTypes.arrayOf({
-     _id: PropTypes.string,
-     name: PropTypes.string.isRequired,
-     photo: PropTypes.string.isRequired
-   })
- }
+  renderStudents(student, index){
+    return(
+      <div key={index}>
+        <Paper className='Student_paper' zDepth={2} rounded={false}>
+        <div>
+        <br />
+        <a href={`/students/${student._id}`} >{student.name}</a>
+        </div>
+         <img className="S_photo" alt="" src={ student.photo }/>
+        </Paper>
+      </div>
+    )
+  }
 
 
   render(){
-    const { name, photo } = this.props
-    const student = this.props
+    const { students } = this.props
+
     return(
-      <div>
-        <ul>student</ul>
-        <li>{ student.name } - {student.photo}</li>
-      </div>
+    <div>
+      <h2>Students List:</h2>
+       <div>
+         { this.props.students.map(this.renderStudents)}
+       </div>
+     </div>
     )
   }
 }
 
-const mapStateToProps = ({ students }) => {
-  return {students}
-}
 
-export default connect(mapStateToProps)(StudentsList)
+export default StudentsList

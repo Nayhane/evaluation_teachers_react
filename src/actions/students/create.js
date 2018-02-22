@@ -6,16 +6,20 @@ import {
   LOAD_SUCCESS
 } from '../loading'
 
+
 const api = new API()
 
-export default (student, batch) => {
+
+export default (student, batchId) => {
   return (dispatch) => {
     dispatch({ type: APP_LOADING })
 
 
-    api.post(`/batch/${batch._Id}/student`, student)
+
+  api.post(`/batches/${batchId}/students`, student )
       .then(() => {
         dispatch({ type: APP_DONE_LOADING })
+        dispatch({ type: LOAD_SUCCESS })
 
       })
       .catch((error) => {

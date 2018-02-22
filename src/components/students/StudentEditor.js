@@ -8,7 +8,6 @@ class StudentEditor extends PureComponent{
   constructor(props){
     super()
 
-
    const {name, photo} = props
 
    this.state = {
@@ -34,6 +33,8 @@ class StudentEditor extends PureComponent{
       name,
       photo,
     } = this.state
+    this.props.createStudent({name, photo})
+
   }
 
 
