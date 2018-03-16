@@ -6,7 +6,9 @@
   padding-top: 20px;
   padding-left: 40px;
   text-align: 'center';
-  display: 'inline-block';
+  display: 'block';
+  float: 'left';
+
 }
 
 .Page_photo{

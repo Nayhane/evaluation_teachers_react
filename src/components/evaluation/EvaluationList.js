@@ -1,10 +1,7 @@
 import React, { PureComponent } from 'react'
-import Paper from 'material-ui/Paper'
 
 
 class EvaluationList extends PureComponent{
-
-
   renderEvaluations(evaluation, index){
     return(
       <div key={index} className="col-md-4">
@@ -15,8 +12,8 @@ class EvaluationList extends PureComponent{
 
 
   render(){
-    const { evaluations } = this.props
-
+    // const { evaluations } = this.props
+  
     return(
     <div>
       <h2>Evaluation List:</h2>

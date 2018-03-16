@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { fetchOneStudent } from '../actions/students/fetch'
 import fetchEvaluations from '../actions/evaluation/fetch'
@@ -48,15 +47,12 @@ class Student extends PureComponent {
          <EvaluationList evaluations={student.evaluations}/>
          <br />
          <EvaluationEditor student={student} />
-
       </Paper>
       </div>
     )
   }
 }
 
-const mapStateToProps = ({ students }) => {
-  return { students }
-}
+const mapStateToProps = ({ students }) => ({ students })
 
 export default connect(mapStateToProps, {fetchOneStudent, fetchEvaluations})(Student)
