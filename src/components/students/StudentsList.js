@@ -32,6 +32,7 @@ class StudentsList extends PureComponent{
        <h2 className='list'>Students List:</h2>
          { this.props.students.map(this.renderStudents)}
        </div>
+
     )
   }
 }
